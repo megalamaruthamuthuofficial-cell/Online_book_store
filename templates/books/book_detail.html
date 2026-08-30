@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}{{ book.title }} | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="book-detail-card">
+
+            <!-- Book Image -->
+
+            <div class="book-detail-image">
+
+                {% if book.cover_image %}
+
+                    <img
+                        src="{{ book.cover_image.url }}"
+                        alt="{{ book.title }}"
+                        style="max-width: 100%; max-height: 450px;"
+                    >
+
+                {% else %}
+
+                    <span style="font-size: 7rem;">
+                        📖
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Book Information -->
+
+            <div class="book-detail-info">
+
+                {% if book.category %}
+
+                    <span class="badge badge-new">
+                        {{ book.category }}
+                    </span>
+
+                {% endif %}
+
+
+                <h1 class="section-title">
+                    {{ book.title }}
+                </h1>
+
+
+                {% if book.author %}
+
+                    <p class="book-author">
+                        By {{ book.author }}
+                    </p>
+
+                {% endif %}
+
+
+                {% if book.price %}
+
+                    <p class="book-price">
+                        ₹{{ book.price }}
+                    </p>
+
+                {% endif %}
+
+
+                {% if book.description %}
+
+                    <div class="book-description">
+
+                        <h3>
+                            Description
+                        </h3>
+
+                        <p>
+                            {{ book.description }}
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+
+                <!-- Actions -->
+
+                <div class="hero-actions">
+
+                    <form
+                        action="/cart/add/{{ book.id }}/"
+                        method="POST"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            🛒 Add to Cart
+                        </button>
+
+                    </form>
+
+
+                    <a
+                        href="/books/"
+                        class="btn btn-secondary"
+                    >
+                        ← Back to Books
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

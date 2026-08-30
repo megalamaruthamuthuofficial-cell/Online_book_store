@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Order Successful | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="empty-state">
+
+            <div style="font-size: 5rem; margin-bottom: 20px;">
+                ✅
+            </div>
+
+            <h1>
+                Order Placed Successfully!
+            </h1>
+
+            <p style="margin-top: 15px;">
+                Thank you for shopping with BookNest.
+                Your order has been received successfully.
+            </p>
+
+            {% if order %}
+
+                <p style="margin-top: 10px;">
+                    <strong>Order ID:</strong>
+                    #{{ order.id }}
+                </p>
+
+            {% endif %}
+
+            <div
+                class="hero-actions"
+                style="
+                    justify-content:center;
+                    margin-top:30px;
+                "
+            >
+
+                <a
+                    href="/orders/history/"
+                    class="btn btn-primary"
+                >
+                    View My Orders
+                </a>
+
+                <a
+                    href="/books/"
+                    class="btn btn-secondary"
+                >
+                    Continue Shopping
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

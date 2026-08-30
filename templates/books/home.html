@@ -1,0 +1,277 @@
+{% extends "base.html" %}
+
+{% block title %}Home | BookNest{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <h1>
+                Discover Your Next
+                <br>
+                Great Read 📚
+            </h1>
+
+            <p>
+                Explore thousands of books, discover new authors,
+                and find stories you'll love.
+            </p>
+
+            <div class="hero-actions">
+
+                <a href="/books/" class="btn btn-primary">
+                    Browse Books
+                </a>
+
+                <a href="/books/search/" class="btn btn-secondary">
+                    Search Books
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2 class="section-title">
+                Find Your Book
+            </h2>
+
+            <p class="section-subtitle">
+                Search by title, author or category
+            </p>
+
+        </div>
+
+        <form
+            action="/books/search/"
+            method="GET"
+            class="search-box"
+        >
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search for a book..."
+                aria-label="Search books"
+            >
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Search
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED BOOKS ================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h2 class="section-title">
+                Featured Books
+            </h2>
+
+            <p class="section-subtitle">
+                Popular books readers are enjoying right now.
+            </p>
+
+        </div>
+
+
+        <div class="book-grid">
+
+            {% if books %}
+
+                {% for book in books %}
+
+                    <article class="book-card">
+
+                        <div class="book-image">
+
+                            {% if book.cover_image %}
+
+                                <img
+                                    src="{{ book.cover_image.url }}"
+                                    alt="{{ book.title }}"
+                                    style="max-width:100%; max-height:100%;"
+                                >
+
+                            {% else %}
+
+                                <span>📖</span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="book-info">
+
+                            <h3 class="book-title">
+                                {{ book.title }}
+                            </h3>
+
+                            {% if book.author %}
+
+                                <p class="book-author">
+                                    {{ book.author }}
+                                </p>
+
+                            {% endif %}
+
+
+                            {% if book.price %}
+
+                                <p class="book-price">
+                                    ₹{{ book.price }}
+                                </p>
+
+                            {% endif %}
+
+
+                            <a
+                                href="/books/{{ book.id }}/"
+                                class="btn btn-primary"
+                            >
+                                View Book
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <p>
+                        No featured books available yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY BOOKNEST ================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header text-center">
+
+            <h2 class="section-title">
+                Why BookNest?
+            </h2>
+
+        </div>
+
+
+        <div class="book-grid">
+
+            <div class="book-card">
+
+                <div class="book-info text-center">
+
+                    <h3>📚 Large Collection</h3>
+
+                    <p class="book-author">
+                        Explore books from different genres
+                        and authors.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="book-card">
+
+                <div class="book-info text-center">
+
+                    <h3>🔎 Easy Search</h3>
+
+                    <p class="book-author">
+                        Quickly find books using search
+                        and filters.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="book-card">
+
+                <div class="book-info text-center">
+
+                    <h3>🛒 Easy Shopping</h3>
+
+                    <p class="book-author">
+                        Add your favourite books to cart
+                        and place orders easily.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="book-card">
+
+                <div class="book-info text-center">
+
+                    <h3>📦 Simple Orders</h3>
+
+                    <p class="book-author">
+                        Track your orders from your account.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

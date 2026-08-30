@@ -1,0 +1,228 @@
+/* =========================================================
+   BOOKNEST - RESPONSIVE STYLES
+   ========================================================= */
+
+
+/* ================= TABLET ================= */
+
+@media (max-width: 992px) {
+
+    .book-grid {
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+    }
+
+
+    .footer-content {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .book-detail-card {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+
+    .book-detail-image {
+        min-height: 350px;
+    }
+
+
+    .filter-row {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* ================= MOBILE NAVIGATION ================= */
+
+@media (max-width: 768px) {
+
+    .nav-container {
+        position: relative;
+        flex-wrap: wrap;
+    }
+
+
+    .menu-toggle {
+        display: block;
+    }
+
+
+    .nav-links,
+    .nav-auth {
+        display: none;
+        width: 100%;
+    }
+
+
+    .nav-container.menu-open .nav-links {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        padding: 15px 0;
+    }
+
+
+    .nav-container.menu-open .nav-auth {
+        display: flex;
+
+        padding-bottom: 15px;
+    }
+
+
+    .hero {
+        padding: 65px 0;
+    }
+
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+
+    .section {
+        padding: 50px 0;
+    }
+
+
+    .book-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+
+    .filter-row {
+        grid-template-columns: 1fr;
+    }
+
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media (max-width: 576px) {
+
+    .container {
+        width: 92%;
+    }
+
+
+    .nav-container {
+        min-height: 65px;
+    }
+
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+
+    .hero {
+        padding: 50px 0;
+    }
+
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+
+    .hero-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+
+    .search-box {
+        flex-direction: column;
+    }
+
+
+    .search-box .btn {
+        width: 100%;
+    }
+
+
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .book-image {
+        height: 300px;
+    }
+
+
+    .book-detail-card {
+        padding: 20px;
+    }
+
+
+    .book-detail-image {
+        min-height: 300px;
+    }
+
+
+    .form-container {
+        padding: 25px 20px;
+
+        margin: 25px auto;
+    }
+
+
+    .cart-item {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .cart-item-image {
+        width: 100%;
+        height: 220px;
+    }
+
+
+    .cart-item .btn {
+        width: 100%;
+    }
+
+
+    .section-title {
+        font-size: 1.65rem;
+    }
+
+
+    .footer {
+        padding-top: 40px;
+    }
+
+}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Newsletter | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="form-container">
+
+            <div style="text-align:center; margin-bottom:25px;">
+
+                <div style="font-size:4rem; margin-bottom:15px;">
+                    📬
+                </div>
+
+                <h1>
+                    Stay Updated
+                </h1>
+
+                <p class="section-subtitle">
+                    Subscribe to our newsletter and receive
+                    updates about new books, offers and recommendations.
+                </p>
+
+            </div>
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                    style="width:100%;"
+                >
+                    Subscribe
+                </button>
+
+            </form>
+
+
+            <p
+                class="text-center"
+                style="margin-top:20px;"
+            >
+                We respect your privacy and won't spam you.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

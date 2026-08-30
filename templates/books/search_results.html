@@ -1,0 +1,392 @@
+{% extends "base.html" %}
+
+{% block title %}Search Books | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <!-- ================= HEADER ================= -->
+
+        <div class="section-header">
+
+            <h1 class="section-title">
+                Search & Filter Books 🔎
+            </h1>
+
+            <p class="section-subtitle">
+                Find books by title, author, category or price.
+            </p>
+
+        </div>
+
+
+        <!-- ================= SEARCH ================= -->
+
+        <form
+            method="GET"
+            action="/books/search/"
+            id="searchForm"
+        >
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    name="q"
+                    id="searchInput"
+                    placeholder="Search by book title or author..."
+                    value="{{ request.GET.q|default:'' }}"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    🔍 Search
+                </button>
+
+            </div>
+
+
+            <!-- ================= FILTERS ================= -->
+
+            <div
+                class="filter-panel"
+                style="margin-top: 25px;"
+            >
+
+                <div class="filter-row">
+
+
+                    <!-- Category -->
+
+                    <div class="filter-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select
+                            name="category"
+                            id="category"
+                        >
+
+                            <option value="">
+                                All Categories
+                            </option>
+
+                            {% for category in categories %}
+
+                                <option
+                                    value="{{ category }}"
+                                    {% if request.GET.category == category %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    {{ category }}
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Author -->
+
+                    <div class="filter-group">
+
+                        <label for="author">
+                            Author
+                        </label>
+
+                        <select
+                            name="author"
+                            id="author"
+                        >
+
+                            <option value="">
+                                All Authors
+                            </option>
+
+                            {% for author in authors %}
+
+                                <option
+                                    value="{{ author }}"
+                                    {% if request.GET.author == author %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    {{ author }}
+                                </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Sort -->
+
+                    <div class="filter-group">
+
+                        <label for="sort">
+                            Sort By
+                        </label>
+
+                        <select
+                            name="sort"
+                            id="sort"
+                        >
+
+                            <option value="">
+                                Default
+                            </option>
+
+                            <option
+                                value="price_low"
+                                {% if request.GET.sort == "price_low" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Price: Low to High
+                            </option>
+
+                            <option
+                                value="price_high"
+                                {% if request.GET.sort == "price_high" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Price: High to Low
+                            </option>
+
+                            <option
+                                value="name_az"
+                                {% if request.GET.sort == "name_az" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Name: A to Z
+                            </option>
+
+                            <option
+                                value="name_za"
+                                {% if request.GET.sort == "name_za" %}
+                                    selected
+                                {% endif %}
+                            >
+                                Name: Z to A
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Filter Buttons -->
+
+                <div
+                    style="
+                        display: flex;
+                        gap: 10px;
+                        margin-top: 20px;
+                        flex-wrap: wrap;
+                    "
+                >
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Apply Filters
+                    </button>
+
+
+                    <a
+                        href="/books/search/"
+                        class="btn btn-secondary"
+                    >
+                        Clear Filters
+                    </a>
+
+                </div>
+
+            </div>
+
+        </form>
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <div style="margin-top: 45px;">
+
+            {% if request.GET.q or request.GET.category or request.GET.author %}
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Search Results
+                    </h2>
+
+                    <p class="section-subtitle">
+
+                        {% if books %}
+                            {{ books|length }} book(s) found.
+                        {% else %}
+                            No books found.
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+            {% else %}
+
+                <div class="section-header">
+
+                    <h2 class="section-title">
+                        Browse Books
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Use the search box or filters to find books.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+
+            <!-- Book Cards -->
+
+            <div
+                class="book-grid"
+                id="bookResults"
+            >
+
+                {% if books %}
+
+                    {% for book in books %}
+
+                        <article
+                            class="book-card search-book-card"
+                            data-title="{{ book.title|lower }}"
+                            data-author="{{ book.author|lower }}"
+                            data-category="{{ book.category|lower }}"
+                        >
+
+                            <div class="book-image">
+
+                                {% if book.cover_image %}
+
+                                    <img
+                                        src="{{ book.cover_image.url }}"
+                                        alt="{{ book.title }}"
+                                        style="
+                                            max-width: 100%;
+                                            max-height: 100%;
+                                        "
+                                    >
+
+                                {% else %}
+
+                                    <span
+                                        style="font-size: 4rem;"
+                                    >
+                                        📖
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="book-info">
+
+                                <h3 class="book-title">
+                                    {{ book.title }}
+                                </h3>
+
+
+                                {% if book.author %}
+
+                                    <p class="book-author">
+                                        By {{ book.author }}
+                                    </p>
+
+                                {% endif %}
+
+
+                                {% if book.category %}
+
+                                    <span class="badge badge-new">
+                                        {{ book.category }}
+                                    </span>
+
+                                {% endif %}
+
+
+                                {% if book.price %}
+
+                                    <p class="book-price">
+                                        ₹{{ book.price }}
+                                    </p>
+
+                                {% endif %}
+
+
+                                <a
+                                    href="/books/{{ book.id }}/"
+                                    class="btn btn-primary"
+                                >
+                                    View Details
+                                </a>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="empty-state">
+
+                        <h3>
+                            📚 No Books Found
+                        </h3>
+
+                        <p>
+                            Try a different search keyword
+                            or change the filters.
+                        </p>
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'js/search.js' %}"></script>
+
+{% endblock %}

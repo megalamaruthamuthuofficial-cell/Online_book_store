@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}Books | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <!-- Page Header -->
+
+        <div class="section-header">
+
+            <h1 class="section-title">
+                All Books 📚
+            </h1>
+
+            <p class="section-subtitle">
+                Explore our collection and find your next favourite book.
+            </p>
+
+        </div>
+
+
+        <!-- Search -->
+
+        <form
+            action="/books/search/"
+            method="GET"
+            class="search-box"
+        >
+
+            <input
+                type="text"
+                name="q"
+                placeholder="Search books by title or author..."
+                value="{{ request.GET.q|default:'' }}"
+            >
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Search
+            </button>
+
+        </form>
+
+
+        <!-- Books -->
+
+        <div class="book-grid" style="margin-top: 35px;">
+
+            {% if books %}
+
+                {% for book in books %}
+
+                    <article class="book-card">
+
+                        <div class="book-image">
+
+                            {% if book.cover_image %}
+
+                                <img
+                                    src="{{ book.cover_image.url }}"
+                                    alt="{{ book.title }}"
+                                    style="max-width:100%; max-height:100%;"
+                                >
+
+                            {% else %}
+
+                                <span style="font-size: 4rem;">
+                                    📖
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <div class="book-info">
+
+                            <h2 class="book-title">
+                                {{ book.title }}
+                            </h2>
+
+
+                            {% if book.author %}
+
+                                <p class="book-author">
+                                    By {{ book.author }}
+                                </p>
+
+                            {% endif %}
+
+
+                            {% if book.category %}
+
+                                <span class="badge badge-new">
+                                    {{ book.category }}
+                                </span>
+
+                            {% endif %}
+
+
+                            {% if book.price %}
+
+                                <p class="book-price">
+                                    ₹{{ book.price }}
+                                </p>
+
+                            {% endif %}
+
+
+                            <a
+                                href="/books/{{ book.id }}/"
+                                class="btn btn-primary"
+                            >
+                                View Details
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty-state">
+
+                    <h3>
+                        No books available
+                    </h3>
+
+                    <p>
+                        Books will appear here when they are added.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

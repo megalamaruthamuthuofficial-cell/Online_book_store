@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}My Orders | BookNest{% endblock %}
+
+{% block content %}
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <h1 class="section-title">
+                My Orders 📦
+            </h1>
+
+            <p class="section-subtitle">
+                View your previous BookNest orders.
+            </p>
+
+        </div>
+
+
+        {% if orders %}
+
+            <div style="display:flex; flex-direction:column; gap:20px;">
+
+                {% for order in orders %}
+
+                    <div class="filter-panel">
+
+                        <div
+                            style="
+                                display:flex;
+                                justify-content:space-between;
+                                align-items:center;
+                                gap:20px;
+                                flex-wrap:wrap;
+                            "
+                        >
+
+                            <div>
+
+                                <h2>
+                                    Order #{{ order.id }}
+                                </h2>
+
+                                {% if order.created_at %}
+
+                                    <p class="book-author">
+                                        {{ order.created_at }}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            {% if order.status %}
+
+                                <span class="badge badge-new">
+                                    {{ order.status }}
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- Order Items -->
+
+                        {% if order.items %}
+
+                            <div style="margin-top:20px;">
+
+                                {% for item in order.items %}
+
+                                    <div
+                                        style="
+                                            display:flex;
+                                            justify-content:space-between;
+                                            gap:15px;
+                                            padding:12px 0;
+                                            border-bottom:1px solid var(--border);
+                                        "
+                                    >
+
+                                        <span>
+                                            {{ item.book.title }}
+                                            × {{ item.quantity }}
+                                        </span>
+
+                                        {% if item.total %}
+
+                                            <strong>
+                                                ₹{{ item.total }}
+                                            </strong>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- Total -->
+
+                        <div
+                            style="
+                                display:flex;
+                                justify-content:space-between;
+                                margin-top:20px;
+                            "
+                        >
+
+                            <strong>
+                                Total
+                            </strong>
+
+                            <strong class="book-price">
+
+                                ₹{{ order.total|default:"0.00" }}
+
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <div style="font-size:4rem;">
+                    📦
+                </div>
+
+                <h2>
+                    No Orders Yet
+                </h2>
+
+                <p>
+                    You haven't placed any orders yet.
+                </p>
+
+                <div style="margin-top:20px;">
+
+                    <a
+                        href="/books/"
+                        class="btn btn-primary"
+                    >
+                        Start Shopping
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

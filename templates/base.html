@@ -1,0 +1,249 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}BookNest{% endblock %}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/responsive.css' %}"
+    >
+
+    {% block extra_css %}{% endblock %}
+
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="container nav-container">
+
+            <a
+                href="/"
+                class="logo"
+            >
+                📚 BookNest
+            </a>
+
+
+            <button
+                id="menuToggle"
+                class="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+
+            <nav class="nav-links">
+
+                <a href="/">
+                    Home
+                </a>
+
+                <a href="/books/">
+                    Books
+                </a>
+
+                <a href="/books/search/">
+                    Search
+                </a>
+
+                <a href="/cart/">
+                    🛒 Cart
+                </a>
+
+                <a href="/orders/">
+                    Orders
+                </a>
+
+                <a href="/newsletter/">
+                    Newsletter
+                </a>
+
+            </nav>
+
+
+            <div class="nav-auth">
+
+                <a
+                    href="/accounts/login/"
+                    class="btn btn-secondary"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="/accounts/register/"
+                    class="btn btn-primary"
+                >
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MESSAGES ================= -->
+
+    {% if messages %}
+
+        <div class="container">
+
+            <div class="messages">
+
+                {% for message in messages %}
+
+                    <div class="message">
+
+                        {{ message }}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div>
+
+                    <h3>
+                        📚 BookNest
+                    </h3>
+
+                    <p>
+                        Discover books you'll love.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Quick Links
+                    </h4>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/books/">
+                        Books
+                    </a>
+
+                    <a href="/books/search/">
+                        Search
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Account
+                    </h4>
+
+                    <a href="/accounts/login/">
+                        Login
+                    </a>
+
+                    <a href="/accounts/register/">
+                        Register
+                    </a>
+
+                    <a href="/accounts/profile/">
+                        Profile
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Stay Connected
+                    </h4>
+
+                    <a href="/newsletter/">
+                        Subscribe to Newsletter
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span data-current-year></span>
+                    BookNest. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>
