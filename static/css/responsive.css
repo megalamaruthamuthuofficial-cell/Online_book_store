@@ -1,0 +1,381 @@
+/* =========================================================
+   BOOKNEST - RESPONSIVE STYLES
+   Mobile + Tablet Support
+   ========================================================= */
+
+
+/* ===================== TABLET ===================== */
+
+@media (max-width: 1024px) {
+
+    .container {
+        width: 92%;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .cart-layout,
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-summary,
+    .checkout-summary {
+        width: 100%;
+    }
+
+}
+
+
+/* ===================== MOBILE ===================== */
+
+@media (max-width: 768px) {
+
+    /* ---------- Navbar ---------- */
+
+    .navbar {
+        padding: 12px 0;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+    }
+
+
+    /* ---------- Container ---------- */
+
+    .container {
+        width: 94%;
+    }
+
+
+    /* ---------- Page Header ---------- */
+
+    .page-header {
+        margin-bottom: 30px;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .page-header p {
+        font-size: 0.92rem;
+    }
+
+
+    /* ---------- Books ---------- */
+
+    .books-page {
+        padding: 40px 0;
+    }
+
+    .book-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .book-cover {
+        height: 190px;
+    }
+
+    .book-info {
+        padding: 17px;
+    }
+
+    .book-bottom {
+        flex-wrap: wrap;
+    }
+
+
+    /* ---------- Cart ---------- */
+
+    .cart-section {
+        padding: 40px 0;
+    }
+
+    .cart-item {
+        display: grid;
+        grid-template-columns: 60px 1fr;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .cart-book-cover {
+        width: 55px;
+        height: 70px;
+    }
+
+    .quantity-section,
+    .cart-item-total,
+    .cart-remove {
+        grid-column: 1 / -1;
+    }
+
+    .quantity-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cart-item-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .cart-remove {
+        text-align: right;
+    }
+
+
+    /* ---------- Checkout ---------- */
+
+    .checkout-section {
+        padding: 40px 0;
+    }
+
+    .checkout-form-card,
+    .checkout-summary {
+        padding: 20px;
+    }
+
+
+    /* ---------- Orders ---------- */
+
+    .order-history-section {
+        padding: 40px 0;
+    }
+
+    .order-card {
+        padding: 18px;
+    }
+
+    .order-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .order-details {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .order-item {
+        align-items: flex-start;
+    }
+
+
+    /* ---------- Success ---------- */
+
+    .order-success-section {
+        padding: 40px 0;
+    }
+
+    .success-card {
+        padding: 30px 20px;
+    }
+
+    .order-info-row {
+        gap: 15px;
+    }
+
+    .success-actions {
+        flex-direction: column;
+    }
+
+    .success-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* ---------- Newsletter ---------- */
+
+    .newsletter-section {
+        padding: 40px 0;
+    }
+
+    .newsletter-card {
+        padding: 25px 20px;
+    }
+
+
+    /* ---------- AI Summary ---------- */
+
+    .ai-summary-section {
+        padding: 40px 0;
+    }
+
+    .ai-summary-card {
+        padding: 20px;
+    }
+
+    .ai-book-header {
+        align-items: flex-start;
+    }
+
+    .summary-content {
+        padding: 22px 0;
+    }
+
+    .ai-summary-actions {
+        flex-direction: column;
+    }
+
+    .ai-summary-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+
+    /* ---------- Buttons ---------- */
+
+    .btn {
+        padding: 10px 16px;
+    }
+
+}
+
+
+/* ===================== SMALL MOBILE ===================== */
+
+@media (max-width: 480px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        width: 95%;
+    }
+
+
+    /* ---------- Navbar ---------- */
+
+    .nav-links {
+        font-size: 0.8rem;
+        gap: 8px 12px;
+    }
+
+
+    /* ---------- Header ---------- */
+
+    .page-header h1 {
+        font-size: 1.7rem;
+    }
+
+    .section-label {
+        font-size: 0.75rem;
+    }
+
+
+    /* ---------- Book Card ---------- */
+
+    .book-cover {
+        height: 170px;
+    }
+
+    .book-icon {
+        font-size: 3rem;
+    }
+
+    .book-info h3 {
+        font-size: 1.05rem;
+    }
+
+
+    /* ---------- Cart ---------- */
+
+    .cart-item {
+        padding: 12px;
+    }
+
+    .cart-book-info h2 {
+        font-size: 1rem;
+    }
+
+    .quantity-controls {
+        justify-content: flex-end;
+    }
+
+
+    /* ---------- Forms ---------- */
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        padding: 10px;
+    }
+
+
+    /* ---------- Checkout ---------- */
+
+    .checkout-form-card,
+    .checkout-summary {
+        padding: 16px;
+    }
+
+
+    /* ---------- Order ---------- */
+
+    .order-header {
+        flex-direction: column;
+    }
+
+    .order-status {
+        align-self: flex-start;
+    }
+
+    .order-info-row {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+
+    /* ---------- AI ---------- */
+
+    .ai-book-header {
+        flex-direction: column;
+    }
+
+    .ai-book-icon {
+        width: 60px;
+        height: 70px;
+    }
+
+    .summary-heading h2 {
+        font-size: 1.1rem;
+    }
+
+    .summary-text {
+        padding: 15px;
+    }
+
+
+    /* ---------- Success ---------- */
+
+    .success-card {
+        padding: 25px 15px;
+    }
+
+    .success-card h1 {
+        font-size: 1.6rem;
+    }
+
+}

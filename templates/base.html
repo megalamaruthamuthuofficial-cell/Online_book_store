@@ -1,0 +1,246 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}Online Book Store{% endblock %}
+    </title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+    <!-- Responsive CSS -->
+    <link rel="stylesheet"
+          href="{% static 'css/responsive.css' %}">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <nav class="navbar">
+
+            <div class="container navbar-container">
+
+                <!-- Logo -->
+
+                <a href="{% url 'book_list' %}"
+                   class="logo">
+                    📚 BookNest
+                </a>
+
+
+                <!-- Navigation -->
+
+                <div class="nav-links">
+
+                    <a href="{% url 'book_list' %}">
+                        Home
+                    </a>
+
+                    <a href="{% url 'featured_books' %}">
+                        Featured
+                    </a>
+
+                    <a href="{% url 'new_arrivals' %}">
+                        New Arrivals
+                    </a>
+
+                    <a href="{% url 'cart_view' %}">
+                        🛒 Cart
+                    </a>
+
+
+                    {% if user.is_authenticated %}
+
+                        <a href="{% url 'profile' %}">
+                            Profile
+                        </a>
+
+                        <a href="{% url 'order_history' %}">
+                            Orders
+                        </a>
+
+                        <form method="post"
+                              action="{% url 'logout' %}"
+                              class="logout-form">
+
+                            {% csrf_token %}
+
+                            <button type="submit">
+                                Logout
+                            </button>
+
+                        </form>
+
+                    {% else %}
+
+                        <a href="{% url 'login' %}">
+                            Login
+                        </a>
+
+                        <a href="{% url 'register' %}">
+                            Register
+                        </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= MESSAGES ================= -->
+
+    {% if messages %}
+
+        <section class="messages container">
+
+            {% for message in messages %}
+
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="main-content">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <!-- Store -->
+
+            <div class="footer-section">
+
+                <h3>📚 BookNest</h3>
+
+                <p>
+                    Your online destination for discovering
+                    and buying books.
+                </p>
+
+            </div>
+
+
+            <!-- Quick Links -->
+
+            <div class="footer-section">
+
+                <h4>Quick Links</h4>
+
+                <a href="{% url 'book_list' %}">
+                    Books
+                </a>
+
+                <a href="{% url 'featured_books' %}">
+                    Featured Books
+                </a>
+
+                <a href="{% url 'new_arrivals' %}">
+                    New Arrivals
+                </a>
+
+            </div>
+
+
+            <!-- Account -->
+
+            <div class="footer-section">
+
+                <h4>Account</h4>
+
+                {% if user.is_authenticated %}
+
+                    <a href="{% url 'profile' %}">
+                        My Profile
+                    </a>
+
+                    <a href="{% url 'order_history' %}">
+                        My Orders
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Newsletter -->
+
+            <div class="footer-section">
+
+                <h4>Stay Updated</h4>
+
+                <a href="{% url 'newsletter_subscribe' %}">
+                    Subscribe to Newsletter
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Copyright -->
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 BookNest. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{% static 'js/main.js' %}"></script>
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+
+</html>

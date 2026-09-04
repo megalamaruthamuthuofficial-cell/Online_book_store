@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block title %}
+My Profile | BookNest
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-section">
+
+    <div class="container">
+
+        <div class="profile-header">
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+            <div>
+                <h1>My Profile</h1>
+
+                <p>
+                    Manage your BookNest account.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="profile-card">
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Username
+                </span>
+
+                <span class="profile-value">
+                    {{ user.username }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    First Name
+                </span>
+
+                <span class="profile-value">
+                    {{ user.first_name|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Last Name
+                </span>
+
+                <span class="profile-value">
+                    {{ user.last_name|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Email
+                </span>
+
+                <span class="profile-value">
+                    {{ user.email|default:"Not provided" }}
+                </span>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Member Since
+                </span>
+
+                <span class="profile-value">
+                    {{ user.date_joined|date:"d M Y" }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-actions">
+
+            <a href="{% url 'order_history' %}"
+               class="btn btn-primary">
+                📦 My Orders
+            </a>
+
+            <a href="{% url 'cart_view' %}"
+               class="btn btn-secondary">
+                🛒 My Cart
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
